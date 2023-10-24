@@ -1,6 +1,7 @@
 {
-  "name": "qr-code-generator-extension",
+  "name": "ascii-art-generator",
   "version": "0.1.0",
+  "author": "hjoncour",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",

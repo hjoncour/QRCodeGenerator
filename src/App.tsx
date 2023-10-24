@@ -1,12 +1,12 @@
 import React from 'react';
-import './App.css';
-import QRCodeGenerator from './components/qrCodeGenerator';
+import './styles/App.css';
+import DragDropImage from './components/dragDropImage';
 
 function App() {
   return (
     <div className="App">
-      <h1>QR Code Generator</h1>
-      <QRCodeGenerator />
+      <h1>ASCII Art</h1>
+      <DragDropImage />
     </div>
   );
 }
