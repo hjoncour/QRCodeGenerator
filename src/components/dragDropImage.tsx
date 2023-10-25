@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
+import ImageToAscii from './imageToAscii';  // Importing the ImageToAscii component
 
 const DragDropImage: React.FC = () => {
-  const [image, setImage] = useState<any>(null);
+  const [imageDataUrl, setImageDataUrl] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState('');
 
@@ -14,7 +15,7 @@ const DragDropImage: React.FC = () => {
     const file = e.dataTransfer.files[0];
     if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
-      reader.onload = (event) => setImage(event.target?.result);
+      reader.onload = (event) => setImageDataUrl(event.target?.result as string);
       reader.readAsDataURL(file);
       setError('');
     } else {
@@ -46,11 +47,7 @@ const DragDropImage: React.FC = () => {
         onDragLeave={onDragLeave}
         onDrop={onDrop}
       >
-        {image ? (
-          <img src={image} alt="Dropped" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-        ) : (
-          <p>{isDragging ? 'Release to drop' : 'Drag & Drop an image here'}</p>
-        )}
+        {imageDataUrl ? <ImageToAscii image={imageDataUrl} /> : <p>{isDragging ? 'Release to drop' : 'Drag & Drop an image here'}</p>}
       </div>
       {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
     </div>
